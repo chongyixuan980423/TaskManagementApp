@@ -1,0 +1,36 @@
+﻿@model TaskManagementApp.Models.Tasks
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="mb-0">@Html.DisplayFor(model => model.Title)</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Description:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+            <dt class="col-sm-3">Status:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
+
+            <dt class="col-sm-3">Assigned to:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.AssignedTo)</dd>
+
+            <dt class="col-sm-3">Last Modified:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.SysModified)</dd>
+
+            <dt class="col-sm-3">Created at:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.SysCreated)</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model?.ID" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</div>
+
