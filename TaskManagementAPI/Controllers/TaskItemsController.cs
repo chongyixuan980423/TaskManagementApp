@@ -35,6 +35,7 @@ namespace TaskManagementAPI.Controllers
                 return BadRequest(ModelState);
 
             task.ID = Guid.NewGuid();
+            task.Status = (task.Status != null) ? task.Status : Status.New;
             task.SysCreated = task.SysModified = DateTime.Now;
 
             _context.Tasks.Add(task);
@@ -52,6 +53,7 @@ namespace TaskManagementAPI.Controllers
             foreach (var task in tasks)
             {
                 task.ID = Guid.NewGuid();
+                task.Status = (task.Status != null) ? task.Status : Status.New;
                 task.SysCreated = task.SysModified = DateTime.Now;
                 _context.Tasks.Add(task);
             }
@@ -67,17 +69,15 @@ namespace TaskManagementAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Retrieve the existing task
             var selectedTask = await _context.Tasks.FindAsync(id);
             if (selectedTask == null)
                 return NotFound();
 
-            // Update only the properties that should be modified
-            selectedTask.Title = task.Title;
-            selectedTask.Description = task.Description;
-            selectedTask.AssignedTo = task.AssignedTo;
-            selectedTask.Status = task.Status;
-            selectedTask.SysModified = DateTime.Now; // Update SysModified
+            selectedTask.Title = (task.Title != null) ? task.Title : selectedTask.Title;
+            selectedTask.Description = (task.Description != null) ? task.Description : selectedTask.Description;
+            selectedTask.AssignedTo = (task.AssignedTo != null) ? task.AssignedTo : selectedTask.AssignedTo;
+            selectedTask.Status = (task.Status != null) ? task.Status : selectedTask.Status;
+            selectedTask.SysModified = DateTime.Now;
 
             try
             {

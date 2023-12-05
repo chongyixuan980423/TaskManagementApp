@@ -16,7 +16,7 @@ namespace TaskManagementApp.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index() => View(await _context.Tasks.ToListAsync());
+        public async Task<IActionResult> Index() => View(await _context.Tasks.OrderByDescending(t => t.SysCreated).ToListAsync());
 
         public async Task<IActionResult> Details(Guid? id)
         {

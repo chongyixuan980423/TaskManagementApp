@@ -15,7 +15,7 @@ namespace TaskManagementApp.Models
         [Display(Name = "Assigned to")]
         public string? AssignedTo { get; set; }
         
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
 
         [Display(Name = "Created at")]
         public DateTime SysCreated { get; set; }
