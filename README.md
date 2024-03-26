@@ -2,7 +2,7 @@
 
 Set up database in SSMS(SQL Server Management Studio):
 1. Download the template database backup file in the TemplateDatabase folder.
-2. Restore database uding the backup file.
+2. Restore database using the backup file.
 3. After successfully restored, you will see a database named TaskManagementDB and a table named Tasks.
 
 Set up Task Management Application:
